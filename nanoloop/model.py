@@ -28,6 +28,7 @@ def make_model(model: str | None = None, *, temperature: float = 0.0) -> ChatAnt
     # Retry transient upstream errors (Anthropic 429/5xx).
     max_retries = int(os.environ.get("HARNESS_MAX_RETRIES", "5"))
 
+    # Note: temperature=0.0 with certain Anthropic models may require API workarounds.
     return ChatAnthropic(
         model=slug,
         api_key=api_key,
@@ -38,6 +39,6 @@ def make_model(model: str | None = None, *, temperature: float = 0.0) -> ChatAnt
 
 
 def subagent_model() -> ChatAnthropic:
-    """Cheaper/faster model for role subagents; falls back to main model."""
+    """Cheaper/faster model for role subagents; defaults to claude-haiku-4-5."""
     slug = os.environ.get("HARNESS_SUBAGENT_MODEL", "claude-haiku-4-5")
     return make_model(slug)

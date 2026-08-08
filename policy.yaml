@@ -24,7 +24,7 @@ filesystem:
 network:
   # Only the model gateway + package registries.
   allow:
-    - destination: "openrouter.ai"
+    - destination: "api.anthropic.com"
       method: [https]
     - destination: "pypi.org"
       method: [https]
@@ -52,7 +52,7 @@ process:
     - binary: "sudo"
 
 # Privacy router: keep sensitive context on local models, route the rest to
-# the frontier model via OpenRouter.
+# the frontier model via the Anthropic API.
 privacy_router:
   default: frontier
   local_when:
