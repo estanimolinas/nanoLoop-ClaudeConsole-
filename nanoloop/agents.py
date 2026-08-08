@@ -30,7 +30,7 @@ def _compose_prompt() -> str:
 def build_agent(checkpointer=None):
     """Create the orchestrator deep agent.
 
-    - Main model: OpenRouter (HARNESS_MODEL).
+    - Main model: Anthropic API (HARNESS_MODEL).
     - Subagents: one per Gstack role, each with isolated context, on the
       (optionally cheaper) HARNESS_SUBAGENT_MODEL.
     - checkpointer: optional LangGraph checkpointer; enables conversation memory

@@ -5,7 +5,7 @@ Tiny autonomous engineering harness for startup tasks. Three layers:
 
 | Layer | Piece | Role |
 |-------|-------|------|
-| Model | [OpenRouter](https://openrouter.ai) | One API, any tool-calling model. OpenAI-compatible → `ChatOpenAI` w/ custom `base_url`. |
+| Model | [Anthropic API](https://console.anthropic.com) | Claude models directly via `ChatAnthropic`, no gateway layer. |
 | Orchestration | [LangChain DeepAgents](https://github.com/langchain-ai/deepagents) | Planning todo tool + role subagents w/ isolated context. |
 | Runtime safety | [NVIDIA OpenShell](https://github.com/NVIDIA/OpenShell) | Sandboxed exec, declarative policy, audit, privacy router. |
 
@@ -17,7 +17,7 @@ Workflow is [Gstack](https://github.com/garrytan/gstack)-inspired: **Plan → Bu
 ./run.sh "task"
    └─ openshell sandbox (policy.yaml) ──── filesystem / network / process gates + audit
         └─ nanoloop CLI  (nanoloop/main.py)
-             └─ DeepAgents orchestrator   [OpenRouter: HARNESS_MODEL]
+             └─ DeepAgents orchestrator   [Anthropic: HARNESS_MODEL]
                   ├─ todo planning tool
                   ├─ tools: run_shell / read_file / write_file / human_review /
                   │         track_task / remember / recall / list_skills / use_skill
@@ -41,7 +41,7 @@ From source (editable dev):
 ```bash
 python3.11 -m venv .venv && source .venv/bin/activate   # 3.11+ required
 pip install -e .
-cp .env.example .env        # add your OPENROUTER_API_KEY
+cp .env.example .env        # add your ANTHROPIC_API_KEY
 curl -LsSf https://raw.githubusercontent.com/NVIDIA/OpenShell/main/install.sh | sh
 ```
 
@@ -118,7 +118,7 @@ python -m twine upload dist/*   # publish to PyPI
 
 ## Layout
 
-- `nanoloop/model.py` — OpenRouter `ChatOpenAI` factory
+- `nanoloop/model.py` — Anthropic `ChatAnthropic` factory
 - `nanoloop/agents.py` — `create_deep_agent` w/ subagents + optional checkpointer
 - `nanoloop/roles.py` — Gstack role prompts + orchestrator prompt
 - `nanoloop/tools.py` — shell/file/`human_review`/`track_task`/memory/skill tools

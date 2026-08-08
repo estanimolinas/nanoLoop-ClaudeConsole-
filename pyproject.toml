@@ -1,12 +1,12 @@
 [project]
 name = "nanoloop"
 version = "0.1.0"
-description = "Tiny autonomous engineering harness: OpenRouter model + LangChain DeepAgents + NVIDIA OpenShell sandbox. Gstack-inspired Plan->Build->Review->Test->Ship loop with session memory and optional human-in-the-loop gates."
+description = "Tiny autonomous engineering harness: Anthropic Claude models + LangChain DeepAgents + NVIDIA OpenShell sandbox. Gstack-inspired Plan->Build->Review->Test->Ship loop with session memory and optional human-in-the-loop gates."
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.11"
 authors = [{ name = "Ismael Faro", email = "ismael.faro.sertage@gmail.com" }]
-keywords = ["agents", "llm", "deepagents", "openrouter", "openshell", "autonomous", "harness"]
+keywords = ["agents", "llm", "deepagents", "anthropic", "claude", "openshell", "autonomous", "harness"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
@@ -19,7 +19,7 @@ classifiers = [
 dependencies = [
     "deepagents>=0.1.0",
     "langchain>=0.3.0",
-    "langchain-openai>=0.2.0",
+    "langchain-anthropic>=0.3.0",
     "langgraph>=0.2.0",
     "python-dotenv>=1.0.0",
     "rich>=13.0.0",
