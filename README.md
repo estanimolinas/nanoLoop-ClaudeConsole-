@@ -11,6 +11,17 @@ Tiny autonomous engineering harness for startup tasks. Three layers:
 
 Workflow is [Gstack](https://github.com/garrytan/gstack)-inspired: **Plan → Build → Review → Test → Ship**, each phase a subagent. Sessions persist task memory across runs; human-in-the-loop gates are opt-in.
 
+## About this fork
+
+This is a fork of [ismaelfaro/nanoLoop](https://github.com/ismaelfaro/nanoLoop) — the
+orchestration (DeepAgents), sandboxing (OpenShell), memory, and skills system are the
+original author's design. What I changed here: swapped the model layer from OpenRouter
+to Anthropic's API directly (`nanoloop/model.py`, now using `ChatAnthropic`), updated
+the sandbox network policy accordingly (`policy.yaml`), and added test coverage for the
+new model factory. Done with an AI pair-programming workflow (spec → plan → implement →
+review, TDD throughout) — see `docs/superpowers/` for the design doc and implementation
+plan behind the swap.
+
 ## Architecture
 
 ```
